@@ -33,7 +33,7 @@ dependencies = [
 where = ["."]
 
 [tool.setuptools.package-data]
-"arches-her" = [
+"arches_her" = [
     "data/graphs/resource_models/*.json",
     "data/ontologies/**/*.xml",
     "data/ontologies/**/*.json",
