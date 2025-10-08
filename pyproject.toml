@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arches-her"
+version = "0.0.3"
+readme = "README.md"
+authors = [
+    {name = "Stuart Marshall"}
+]
+license = "AGPL-3.0-or-later"
+description = "A Django app to install the base HER package for arches"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.2",
+    "Intended Audience :: Developers",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "arches>=8.1.0a0",
+]
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.package-data]
+"arches-her" = [
+    "data/graphs/resource_models/*.json",
+    "data/ontologies/**/*.xml",
+    "data/ontologies/**/*.json",
+    "data/ontologies/**/*.rdfs",
+    "data/reference_data/concepts/*.xml",
+    "data/reference_data/collections/*.xml",
+    "data/widgets/*.json",
+    "data/extensions/datatypes/*.py",
+    "data/preliminary_sql/*.sql",
+    "data/post_sql/*.sql",
+    "migrations/*.py",
+]

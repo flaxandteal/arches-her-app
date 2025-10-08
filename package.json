@@ -1,0 +1,12 @@
+{
+  "name": "arches-her",
+  "version": "1.0.0",
+  "description": "A Django app to install the base HER package for arches",
+  "author": "Stuart Marshall",
+  "dependencies": {
+    },
+    "devDependencies": {
+    },
+    "nodeModulesPaths": {
+    }
+}
