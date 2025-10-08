@@ -52,14 +52,18 @@ def load_package_data(apps, schema_editor):
         try:
             extensions_path = pkg_resources.resource_filename(package_name, 'data/extensions')
             if os.path.exists(extensions_path):
-                # Register datatypes by importing the modules
+                # Register datatypes using the datatype command
                 datatypes_path = os.path.join(extensions_path, 'datatypes')
                 if os.path.exists(datatypes_path):
-                    for filename in os.listdir(datatypes_path):
+                    for filename in sorted(os.listdir(datatypes_path)):
                         if filename.endswith('.py') and filename != '__init__.py':
-                            print(f"Found datatype module: {filename}")
-                    # Note: Datatypes are typically auto-registered when the app is loaded
-                    print("Datatypes will be registered when the application starts")
+                            datatype_file = os.path.join(datatypes_path, filename)
+                            try:
+                                # Register the datatype using management command
+                                call_command('datatype', 'register', '--source', datatype_file)
+                                print(f"Successfully registered datatype: {filename}")
+                            except Exception as e:
+                                print(f"Error registering datatype {filename}: {e}")
         except Exception as e:
             print(f"Error loading extensions: {e}")
         
