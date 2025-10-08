@@ -11,7 +11,7 @@ def load_package_data(apps, schema_editor):
     This replicates what the Arches package installer does
     """
     
-    package_name = 'arches-her'
+    package_name = 'arches_her'  # Use the Python module name, not the package distribution name
     
     try:
         # Step 1: Load ontologies
@@ -183,9 +183,12 @@ def load_package_data(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
+    initial = True
+    
     dependencies = [
+        # Both required for importing graphs - can install in any order
         ('models', '12394_resource_identifier'),
-        ('guardian', '0002_generic_permissions_index')
+        ('guardian', '0002_generic_permissions_index'),
     ]
 
     operations = [
