@@ -81,27 +81,7 @@ def load_package_data(apps, schema_editor):
         except Exception as e:
             print(f"Error loading widgets: {e}")
         
-        # Step 4: Run preliminary SQL (before graphs)
-        print("\n" + "=" * 80)
-        print("Running preliminary SQL...")
-        print("=" * 80)
-        try:
-            preliminary_sql_path = pkg_resources.resource_filename(package_name, 'data/preliminary_sql')
-            if os.path.exists(preliminary_sql_path):
-                sql_files = sorted(glob.glob(os.path.join(preliminary_sql_path, '*.sql')))
-                for sql_file in sql_files:
-                    try:
-                        with open(sql_file, 'r') as f:
-                            sql = f.read()
-                            with connection.cursor() as cursor:
-                                cursor.execute(sql)
-                        print(f"Successfully executed preliminary SQL: {os.path.basename(sql_file)}")
-                    except Exception as e:
-                        print(f"Error executing {os.path.basename(sql_file)}: {e}")
-        except Exception as e:
-            print(f"Error running preliminary SQL: {e}")
-        
-        # Step 5: Load resource models (graphs)
+        # Step 4: Load resource models (graphs)
         print("\n" + "=" * 80)
         print("Loading resource models (graphs)...")
         print("=" * 80)
@@ -118,6 +98,29 @@ def load_package_data(apps, schema_editor):
                             print(f"Error importing graph {filename}: {e}")
         except Exception as e:
             print(f"Error loading graphs: {e}")
+        
+        # Step 5: Run preliminary SQL (after graphs are imported)
+        print("\n" + "=" * 80)
+        print("Running preliminary SQL (after graphs)...")
+        print("=" * 80)
+        try:
+            preliminary_sql_path = pkg_resources.resource_filename(package_name, 'data/preliminary_sql')
+            if os.path.exists(preliminary_sql_path):
+                sql_files = sorted(glob.glob(os.path.join(preliminary_sql_path, '*.sql')))
+                for sql_file in sql_files:
+                    try:
+                        with open(sql_file, 'r') as f:
+                            sql = f.read()
+                            with connection.cursor() as cursor:
+                                cursor.execute(sql)
+                        print(f"Successfully executed preliminary SQL: {os.path.basename(sql_file)}")
+                    except Exception as e:
+                        print(f"Error executing {os.path.basename(sql_file)}: {e}")
+                        # Don't raise - continue with next SQL file
+            else:
+                print("No preliminary SQL directory found")
+        except Exception as e:
+            print(f"Error running preliminary SQL: {e}")
         
         # Step 6: Load reference data - concepts
         print("\n" + "=" * 80)
