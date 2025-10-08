@@ -1,3 +1,9 @@
 include README.md
-recursive-include data *.json *.xml *.rdfs *.sql
-recursive-include migrations *.py
+include LICENSE
+recursive-include arches_her/data *.json *.xml *.rdfs *.sql
+recursive-include arches_her/migrations *.py
+recursive-include arches_her/plugins *.json
+recursive-include arches_her/functions *.py
+recursive-include arches_her/utils *.py
+recursive-include arches_her/templates *.htm *.html
+recursive-include arches_her/media *.js *.css *.png *.jpg *.jpeg *.gif *.svg *.woff *.woff2 *.ttf *.eot

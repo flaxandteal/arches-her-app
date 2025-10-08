@@ -182,6 +182,23 @@ def load_package_data(apps, schema_editor):
         except Exception as e:
             print(f"Error running post SQL: {e}")
         
+        # Step 9: Load plugins
+        print("\n" + "=" * 80)
+        print("Loading plugins...")
+        print("=" * 80)
+        try:
+            plugins_path = pkg_resources.resource_filename(package_name, 'plugins')
+            if os.path.exists(plugins_path):
+                plugin_files = sorted(glob.glob(os.path.join(plugins_path, '*.json')))
+                for plugin_file in plugin_files:
+                    if os.path.basename(plugin_file) != '.gitkeep':
+                        try:
+                            call_command('plugin', 'register', '--source', plugin_file)
+                            print(f"Successfully registered plugin: {os.path.basename(plugin_file)}")
+                        except Exception as e:
+                            print(f"Error registering {os.path.basename(plugin_file)}: {e}")
+        except Exception as e:
+            print(f"Error loading plugins: {e}")
         
             
     except Exception as e:
