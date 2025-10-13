@@ -19,7 +19,7 @@ pip install git+https://github.com/flaxandteal/arches-her-app.git
 INSTALLED_APPS = [
     ...
     "demo",
-    "arches_example",
+    "arches-her",
 ]
 ```
 
@@ -27,13 +27,13 @@ INSTALLED_APPS = [
 ```
 dependencies = [
     "arches>=8.1.0a0",
-    "arches_example",
+    "arches-her",
 ]
 ```
 
-4. From your project run migrate to add the model included in the app:
+4. From your project run the load package command for the app to add the model data:
 ```
-python manage.py migrate
+python manage.py packages -o load_package -a arches-her
 ```
 
 5. Next be sure to rebuild your project's frontend to include the plugin:
