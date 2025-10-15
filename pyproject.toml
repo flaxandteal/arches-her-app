@@ -34,15 +34,20 @@ where = ["."]
 
 [tool.setuptools.package-data]
 "arches_her" = [
-    "data/graphs/resource_models/*.json",
-    "data/ontologies/**/*.xml",
-    "data/ontologies/**/*.json",
-    "data/ontologies/**/*.rdfs",
-    "data/reference_data/concepts/*.xml",
-    "data/reference_data/collections/*.xml",
-    "data/widgets/*.json",
-    "data/extensions/datatypes/*.py",
-    "data/preliminary_sql/*.sql",
-    "data/post_sql/*.sql",
-    "migrations/*.py",
+    "widgets/*.json",
+    "functions/*.py",
+    "datatypes/*.py",
+    "pkg/graphs/resource_models/*.json",
+    "pkg/ontologies/**/*.xml",
+    "pkg/ontologies/**/*.json",
+    "pkg/ontologies/**/*.rdfs",
+    "pkg/reference_data/concepts/*.xml",
+    "pkg/reference_data/collections/*.xml",
+    "pkg/extensions/datatypes/*.py",
+    "pkg/extensions/functions/*.py",
+    "pkg/extensions/widgets/*.json",
+    "pkg/preliminary_sql/*.sql",
+    "pkg/post_sql/*.sql",
+    "pkg/functions/*.py",
+
 ]
