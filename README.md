@@ -1,11 +1,12 @@
 # My App
 
 ### Description
-This app contains the base HER package for arches.
+This app contains the graph models for the Arches HER package.
+This is not a full working app for HER, it is only for basic use to show graph structures.
 
 ### Installation
 
-Arches Example... (thanks to Cyrus for the base text from the Dashboard example).
+Arches HER Demo.
 
 You can add the arches example into your project in a few easy steps
 
@@ -14,26 +15,26 @@ You can add the arches example into your project in a few easy steps
 pip install git+https://github.com/flaxandteal/arches-her-app.git
 ```
 
-2. Add `"arches-her"` to the INSTALLED_APPS setting in the demo project's settings.py file below the demo project:
+2. Add `"arches_her"` to the INSTALLED_APPS setting in the demo project's settings.py file below the demo project:
 ```
 INSTALLED_APPS = [
     ...
     "demo",
-    "arches-her",
+    "arches_her",
 ]
 ```
 
-3. Version your dependency on `"arches-her"` in `pyproject.toml`:
+3. Version your dependency on `"arches_her"` in `pyproject.toml`:
 ```
 dependencies = [
     "arches>=8.1.0a0",
-    "arches-her",
+    "arches_her @ git+https://github.com/flaxandteal/arches-her-app",
 ]
 ```
 
 4. From your project run the load package command for the app to add the model data:
 ```
-python manage.py packages -o load_package -a arches-her
+python manage.py packages -o load_package -a arches_her
 ```
 
 5. Next be sure to rebuild your project's frontend to include the plugin:
