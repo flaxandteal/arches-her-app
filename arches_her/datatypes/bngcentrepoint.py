@@ -5,7 +5,11 @@ from arches.app.search.elasticsearch_dsl_builder import Match, Exists
 from arches.app.search.search_term import SearchTerm
 import logging
 
-bngpoint = Widget.objects.get(name="bngpoint")
+try:
+    bngpoint = Widget.objects.get(name="bngpoint")
+except Exception:
+    # avoid raising during import (DB may be unavailable during package loading)
+    bngpoint = None
 
 details = {
     "datatype": "bngcentrepoint",
